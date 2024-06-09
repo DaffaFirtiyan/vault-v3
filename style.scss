@@ -14,110 +14,180 @@
 /**************/
 
 html {
-  font-size: 100%;
+  /* font-size: 100%; */
 }
 
 body {
-	background: $white;
-  font: 18px/1.4 $helvetica;
-  color: $darkGray;
+	background: $black;
+  color: $white;
+  scroll-behavior: smooth;
+  font-family: Georgia, serif;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 0 10px;
-  width: 100%;
+section {
+  height: 100vh;
+  transition: transform 0.5s ease-in-out;
 }
+
+blockquote {
+  padding: 1em;
+  max-width: 37vw;
+  color: lightgray;
+  position: relative; /* Ensure the pseudo-elements are positioned correctly */
+}
+
+/* GPT generated */
+blockquote::before {
+  content: "“"; /* Opening quotation mark */
+  font-size: 3rem; /* Set the size of the quotation mark */
+  position: absolute; /* Position it absolutely within the blockquote */
+  left: -0.1em; /* Adjust position as needed */
+  top: 0.1em; /* Adjust position as needed */
+}
+
+blockquote::after {
+  content: "”"; /* Closing quotation mark */
+  font-size: 3rem; /* Set the size of the quotation mark */
+  position: absolute; /* Position it absolutely within the blockquote */
+  right: 0.4em; /* Adjust position as needed */
+  bottom: -0.5em; /* Adjust position as needed */
+}
+/* GPT generated */
+
+code {
+  color: black;
+}
+
+textarea {
+  width: 27vw;
+  height: 47vh;
+  background: darkgray;
+  margin-left: 1em;
+}
+
+#draggable {
+  position: absolute;
+  z-index: 9; /* higher z-index, higher priority */
+  /* border: 1px solid #d3d3d3; */
+  background-color:rgba(0, 0, 0, 0.5);
+}
+
+#draggableheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}
+
+#draggable > p {
+  max-width: 42vw;
+}
+
+.container-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.container-col {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.center { justify-content: flex-end; }
+.see-border { border: 1px solid red; } // debugging
+
+.fade {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+.fade-out { opacity: 0; }
+.fade-in { opacity: 1; }
+
+.tag {
+  padding: 0 0.1em;
+}
+
+#container-welcome {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 2.1rem;
+}
+
+#container-welcome-word {
+  width: 100vh;
+  margin: auto;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#container-welcome-word i {
+  /* border: 1px solid red; */
+  display: flex;
+  width: 100%;
+  padding: 0 3px;
+  font-style: normal;
+}
+
+#good {
+  justify-content: flex-end;
+}
+
+
+#container-post {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#container-post aside { flex-grow: 1; }
+
+.posts {
+  width: 75vw;
+}
+
+.post-container {
+  width: 85vw;
+  display: flex;
+  flex-flow: column wrap;
+  margin: 2em auto;
+}
+
+.entry {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+/* START OF PRE-MADE CSS ============================================== */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
-  color: $darkerGray;
-  font-weight: bold;
-
+  /* font-family: $helveticaNeue; */
   line-height: 1.7;
-  margin: 1em 0 15px;
   padding: 0;
 
-  @include mobile {
-    line-height: 1.4;
-  }
+  @include mobile { line-height: 1.4; }
 }
 
-h1 {
-  font-size: 30px;
-  a {
-    color: inherit;
-  }
-}
-
-h2 {
-  font-size: 24px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
-h4 {
-  font-size: 18px;
-  color: $gray;
-}
-
-p {
-  margin: 15px 0;
-}
+h1 { font-size: 2em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.4em; }
+p { margin: 15px 0; }
 
 a {
   color: $blue;
   text-decoration: none;
 	cursor: pointer;
   &:hover, &:active {
-    color: $blue;
+    color: $white;
   }
 }
 
-ul, ol {
-  margin: 15px 0;
-  padding-left: 30px;
-}
-
-ul {
-  list-style-type: disc;
-}
-
-ol {
-  list-style-type: decimal;
-}
-
-ol ul, ul ol, ul ul, ol ol {
-  margin: 0;
-}
-
-ul ul, ol ul {
-  list-style-type: circle;
-}
-
-em, i {
-  font-style: italic;
-}
-
-strong, b {
-  font-weight: bold;
-}
-
-img {
-  max-width: 100%;
-}
-
-// Fixes images in popup boxes from Google Translate
-.gmnoprint img {
-  max-width: none;
-}
-
 .date {
+  margin-top: 1em;
+  margin-left: 0.2em;
   font-style: italic;
-  color: $gray;
+  color: lightgray;
 }
 
 // Specify the color of the selection
@@ -130,157 +200,18 @@ img {
   background: $lightGray;
 }
 
-// Nicolas Gallagher's micro clearfix hack
-// http://nicolasgallagher.com/micro-clearfix-hack/
-.clearfix:before,
-.clearfix:after {
-    content: " ";
-    display: table;
+.post {
+  padding: 0 1em; 
 }
-
-.clearfix:after {
-    clear: both;
-}
-
-/*********************/
-/* LAYOUT / SECTIONS */
-/*********************/
-
-//
-// .masthead
-//
-
-.wrapper-masthead {
-  margin-bottom: 50px;
-}
-
-.masthead {
-  padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
-
-  @include mobile {
-    text-align: center;
-  }
-}
-
-.site-avatar {
-  float: left;
-  width: 70px;
-  height: 70px;
-  margin-right: 15px;
-
-  @include mobile {
-    float: none;
-    display: block;
-    margin: 0 auto;
-  }
-
-  img {
-    border-radius: 5px;
-  }
-}
-
-.site-info {
-  float: left;
-
-  @include mobile {
-    float: none;
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-.site-name {
-  margin: 0;
-  color: $darkGray;
-  cursor: pointer;
-  font-family: $helveticaNeue;
-  font-weight: 300;
-  font-size: 28px;
-  letter-spacing: 1px;
-}
-
-.site-description {
-  margin: -5px 0 0 0;
-  color: $gray;
-  font-size: 16px;
-
-  @include mobile {
-    margin: 3px 0;
-  }
-}
-
-nav {
-  float: right;
-  margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
-  font-size: 18px;
-
-  @include mobile {
-    float: none;
-    margin-top: 9px;
-    display: block;
-    font-size: 16px;
-  }
-
-  a {
-    margin-left: 20px;
-    color: $darkGray;
-    text-align: right;
-    font-weight: 300;
-    letter-spacing: 1px;
-
-    @include mobile {
-      margin: 0 10px;
-      color: $blue;
-    }
-  }
-}
-
-//
-// .main
-//
 
 .posts > .post {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid lightgray;
 }
 
 .posts > .post:last-child {
-  padding-bottom: 1em;
+  margin-bottom: 1em;
   border-bottom: none;
-}
-
-.post {
-  blockquote {
-    margin: 1.8em .8em;
-    border-left: 2px solid $gray;
-    padding: 0.1em 1em;
-    color: $gray;
-    font-size: 22px;
-    font-style: italic;
-  }
-
-  .comments {
-    margin-top: 10px;
-  }
-
-  .read-more {
-    text-transform: uppercase;
-    font-size: 15px;
-  }
-}
-
-.wrapper-footer {
-  margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
-}
-
-footer {
-  padding: 20px 0;
-  text-align: center;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS

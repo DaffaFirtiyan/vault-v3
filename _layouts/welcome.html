@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% include meta.html %}
+
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+  <title>good, we're back :v</title>
+</head>
+<body style="overflow: hidden;">
+  <main>
+    <section id="container-welcome" class="container-row">
+      <div id="container-welcome-word">
+        <i id="good">good</i>
+        <i id="welcome-word" class="fade">night</i>
+      </div>
+    </section>
+    <section id="container-post">
+      <aside></aside>
+      <div class="container-col">
+        {{ content }}
+      </div>
+      <aside></aside>
+    </section>
+  </main>
+  <script src="scripts.js"></script>
+</body>
+</html>

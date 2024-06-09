@@ -1,17 +1,49 @@
 ---
 layout: default
 ---
+<style>
+  #draggableheader {
+    animation: pulse 300s infinite;
+    -webkit-animation: pulse 300s infinite;
+}
 
-<article class="post">
+@-webkit-keyframes pulse {
+  0% { background: lightcoral;}
+  13% { background-color: azure;}
+  25% { background-color: lightslategray;}
+  37% { background-color: sienna;}
+  50% { background-color: thistle;}
+  62% { background-color: honeydew;}
+  75% { background-color: wheat;}
+  87% { background-color: black;}
+  100% { background-color: lightcoral;}
+}
+
+@keyframes pulse {
+    0% { background: lightcoral;}
+    13% { background-color: azure;}
+    25% { background-color: lightslategray;}
+    37% { background-color: sienna;}
+    50% { background-color: thistle;}
+    62% { background-color: honeydew;}
+    75% { background-color: wheat;}
+    87% { background-color: black;}
+    100% { background-color: lightcoral;}
+}
+</style>
+<article class="post-container">
+  <a href="{{ site.baseurl }}/#container-post">back</a>
   <h1>{{ page.title }}</h1>
 
   <div class="entry">
-    {{ content }}
+    <div id="draggable">
+      <div id="draggableheader">Click here to move</div>
+      {{ content }}
+    </div>
   </div>
 
   <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
+    written on {{ page.date | date: "%B %e, %Y" }}
   </div>
-
-  {% include disqus.html %}
 </article>
+<script src="../draggable.js"></script>
